@@ -497,6 +497,58 @@ defmodule ExTwitter do
   defdelegate stream_filter(options, timeout), to: ExTwitter.API.Streaming
 
   @doc """
+  GET user
+
+  Streams messages for a single user.
+
+  ## Options
+
+  The `options` can have following values, in addition to the
+  twitter API's parameter.
+
+    * `:receive_messages` - true/false flag whether to receive
+    control messages in addition to normal tweets. default is false.
+
+  The timeout is the maximum milliseconds to wait until receiving
+  next tweet. Specifying `:infinity` makes it wait infinitely.
+
+  ## Examples
+
+      ExTwitter.stream_user(timeout: 60000)
+
+  ## Reference
+  https://dev.twitter.com/streaming/reference/get/user
+  """
+  @spec stream_user(Keyword.t) :: Enumerable.t
+  defdelegate stream_user(options), to: ExTwitter.API.Streaming
+
+  @doc """
+  GET user
+
+  Streams messages for a single user.
+
+  ## Options
+
+  The `options` can have following values, in addition to the
+  twitter API's parameter.
+
+    * `:receive_messages` - true/false flag whether to receive
+    control messages in addition to normal tweets. default is false.
+
+  The timeout is the maximum milliseconds to wait until receiving
+  next tweet. Specifying `:infinity` makes it wait infinitely.
+
+  ## Examples
+
+      ExTwitter.stream_user(timeout: 60000)
+
+  ## Reference
+  https://dev.twitter.com/streaming/reference/get/user
+  """
+  @spec stream_user(Keyword.t, [timeout: Integer]) :: Enumerable.t
+  defdelegate stream_user(options, timeout), to: ExTwitter.API.Streaming
+
+  @doc """
   An interface to control the stream.
 
   This method is for controlling stream, and it doesn't make twitter API call.

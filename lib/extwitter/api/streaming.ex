@@ -23,6 +23,13 @@ defmodule ExTwitter.API.Streaming do
     create_stream(pid, timeout)
   end
 
+  def stream_user(options, timeout \\ @default_stream_timeout) do
+    {options, configs} = seperate_configs_from_options(options)
+    params = ExTwitter.Parser.parse_request_params(options)
+    pid = async_request(self, :get, "1.1/user.json", params, configs)
+    create_stream(pid, timeout)
+  end
+
   defp seperate_configs_from_options(options) do
     config  = Keyword.take(options, [:receive_messages])
     options = Keyword.delete(options, :receive_messages)
@@ -172,6 +179,7 @@ defmodule ExTwitter.API.Streaming do
   end
 
   defp request_url(path) do
-    "https://stream.twitter.com/#{path}" |> to_char_list
+    url = if path =~ ~r/user/, do: "https://userstream.twitter.com/#{path}", else: "https://stream.twitter.com/#{path}"
+    url |> to_char_list
   end
 end
