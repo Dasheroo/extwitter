@@ -112,6 +112,12 @@ defmodule ExTwitter.Model.StallWarning do
   @type t :: %__MODULE__{}
 end
 
+defmodule ExTwitter.Model.Friends do
+  defstruct friends: nil
+
+  @type t :: %__MODULE__{}
+end
+
 defmodule ExTwitter.Model.Cursor do
   defstruct items: nil, next_cursor: nil, previous_cursor: nil
 
