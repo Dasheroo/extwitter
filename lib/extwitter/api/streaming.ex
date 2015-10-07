@@ -87,7 +87,7 @@ defmodule ExTwitter.API.Streaming do
         {:halt, pid}
 
       {:empty} ->
-        IO.puts "#{pid}: empty message received"
+        IO.puts "#{inspect pid}: empty message received"
         receive_next_tweet(pid, timeout)
 
       _ ->
