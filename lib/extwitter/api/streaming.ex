@@ -103,8 +103,8 @@ defmodule ExTwitter.API.Streaming do
         process_stream(processor, request_id, configs)
 
       {:http, {request_id, :stream, part}} ->
+        IO.inspect part
         cond do
-          IO.inspect part
           is_empty_message(part) ->
             IO.puts "empty message"
             process_stream(processor, request_id, configs, acc)
