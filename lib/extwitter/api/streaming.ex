@@ -120,8 +120,9 @@ defmodule ExTwitter.API.Streaming do
             process_stream(processor, request_id, configs, [part|acc])
         end
 
-      {:http, {request_id, :stream_end, _headers}} ->
-        IO.puts "stream end"
+      {:http, {_request_id, :stream_end, _headers}} ->
+        require IEx
+        IEx.pry
         send processor, {:error, "end of stream"}
 
       {:http, {_request_id, {:error, reason}}} ->
